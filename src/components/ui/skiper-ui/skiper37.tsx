@@ -61,7 +61,7 @@ const AnimatedNumber_001 = () => {
   return (
     <div className="relative flex h-screen w-full flex-col items-center justify-center bg-[#f5f4f3] text-black">
       <div className="top-22 absolute left-1/2 grid -translate-x-1/2 content-start justify-items-center gap-6 text-center text-black">
-        <span className="relative max-w-[12ch] text-xs uppercase leading-tight opacity-40 after:absolute after:left-1/2 after:top-full after:h-16 after:w-px after:bg-gradient-to-b after:from-[#f5f4f3] after:to-black after:content-['']">
+        <span className="relative max-w-[12ch] text-xs uppercase leading-tight opacity-40 after:absolute after:left-1/2 after:top-full after:h-16 after:w-px after:bg-linear-to-b after:from-[#f5f4f3] after:to-black after:content-['']">
           Countdown with Number Flow
         </span>
       </div>
@@ -142,7 +142,7 @@ export const AnimatedNumber_002 = () => {
   return (
     <div className="relative flex h-screen w-full flex-col items-center justify-center bg-[#f5f4f3] text-black">
       <div className="top-22 absolute left-1/2 grid -translate-x-1/2 content-start justify-items-center gap-6 text-center text-black">
-        <span className="relative max-w-[12ch] text-xs uppercase leading-tight opacity-40 after:absolute after:left-1/2 after:top-full after:h-16 after:w-px after:bg-gradient-to-b after:from-[#f5f4f3] after:to-black after:content-['']">
+        <span className="relative max-w-[12ch] text-xs uppercase leading-tight opacity-40 after:absolute after:left-1/2 after:top-full after:h-16 after:w-px after:bg-linear-to-b after:from-[#f5f4f3] after:to-black after:content-['']">
           random numbers from x to y in view
         </span>
       </div>
@@ -195,7 +195,7 @@ export const AnimatedNumber_003 = () => {
   return (
     <div className="relative flex h-screen w-full flex-col items-center justify-center bg-[#f5f4f3] text-black">
       <div className="top-22 absolute left-1/2 grid -translate-x-1/2 content-start justify-items-center gap-6 text-center text-black">
-        <span className="relative max-w-[12ch] text-xs uppercase leading-tight opacity-40 after:absolute after:left-1/2 after:top-full after:h-16 after:w-px after:bg-gradient-to-b after:from-[#f5f4f3] after:to-black after:content-['']">
+        <span className="relative max-w-[12ch] text-xs uppercase leading-tight opacity-40 after:absolute after:left-1/2 after:top-full after:h-16 after:w-px after:bg-linear-to-b after:from-[#f5f4f3] after:to-black after:content-['']">
           random numbers from x to y in view
         </span>
       </div>
@@ -238,7 +238,7 @@ function AnimatedNumber_004() {
   return (
     <div className="relative flex h-screen w-full flex-col items-center justify-center bg-[#f5f4f3] text-black">
       <div className="top-22 absolute left-1/2 grid -translate-x-1/2 content-start justify-items-center gap-6 text-center text-black">
-        <span className="relative max-w-[12ch] text-xs uppercase leading-tight opacity-40 after:absolute after:left-1/2 after:top-full after:h-16 after:w-px after:bg-gradient-to-b after:from-[#f5f4f3] after:to-black after:content-['']">
+        <span className="relative max-w-[12ch] text-xs uppercase leading-tight opacity-40 after:absolute after:left-1/2 after:top-full after:h-16 after:w-px after:bg-linear-to-b after:from-[#f5f4f3] after:to-black after:content-['']">
           from x to y value in view [number-flow]
         </span>
       </div>

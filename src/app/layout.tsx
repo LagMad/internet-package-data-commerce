@@ -25,7 +25,7 @@ export default function RootLayout({
         <AntdRegistry>
           <AuthProvider>
             <Navbar />
-            <div className="bg-cust-dark-blue!">{children}</div>
+            <div className="min-h-screen bg-cust-dark-blue!">{children}</div>
             <Footer />
             <Toaster position="top-right" />
           </AuthProvider>
