@@ -46,7 +46,11 @@
       "price": 15000,
       "category": "daily",
       "description": "Paket hemat untuk kebutuhan sehari-hari. Cocok untuk penggunaan ringan seperti chatting dan browsing.",
-      "features": ["1 GB Kuota Utama", "Berlaku 7 Hari", "Semua Jaringan"],
+      "features": [
+        "1 GB Kuota Utama",
+        "Berlaku 7 Hari",
+        "Semua Jaringan"
+      ],
       "isActive": true,
       "createdAt": "2024-01-01T00:00:00.000Z"
     },
@@ -167,7 +171,11 @@
       "price": 7000,
       "category": "daily",
       "description": "Paket mini untuk kebutuhan darurat. Harga terjangkau, bisa dibeli kapan saja.",
-      "features": ["500 MB Kuota Utama", "Berlaku 3 Hari", "Semua Jaringan"],
+      "features": [
+        "500 MB Kuota Utama",
+        "Berlaku 3 Hari",
+        "Semua Jaringan"
+      ],
       "isActive": true,
       "createdAt": "2024-01-01T00:00:00.000Z"
     }
@@ -243,5 +251,6 @@
       "createdAt": "2024-04-12T08:00:00.000Z",
       "updatedAt": "2024-04-12T08:01:00.000Z"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
