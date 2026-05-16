@@ -1,4 +1,4 @@
-export type UserRole = 'admin' | 'customer';
+export type UserRole = "admin" | "customer";
 
 export interface User {
   id: string;
@@ -10,7 +10,7 @@ export interface User {
   createdAt: string;
 }
 
-export type PackageCategory = 'daily' | 'monthly' | 'unlimited' | 'gaming';
+export type PackageCategory = "daily" | "monthly" | "unlimited" | "gaming";
 
 export interface Package {
   id: string;
@@ -22,11 +22,12 @@ export interface Package {
   description: string;
   features: string[];
   isActive: boolean;
+  badge?: string | null;
   createdAt: string;
 }
 
-export type TransactionStatus = 'pending' | 'success' | 'failed';
-export type PaymentMethod = 'Transfer Bank' | 'E-Wallet' | 'QRIS';
+export type TransactionStatus = "pending" | "success" | "failed";
+export type PaymentMethod = "Transfer Bank" | "E-Wallet" | "QRIS";
 
 export interface Transaction {
   id: string;
@@ -59,7 +60,10 @@ export interface CreateTransactionPayload {
 
 export interface AuthContextType {
   user: User | null;
-  login: (email: string, password: string) => Promise<{ success: boolean; message: string }>;
+  login: (
+    email: string,
+    password: string,
+  ) => Promise<{ success: boolean; message: string }>;
   logout: () => void;
   isLoading: boolean;
 }

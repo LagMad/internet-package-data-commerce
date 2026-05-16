@@ -35,7 +35,7 @@ const Packages = ({ onGetStarted, packages }: PackagesProps) => {
             <Col key={pkg.id} xs={24} sm={12} md={8} className="flex">
               <Card
                 hoverable
-                className="flex flex-col w-full h-full bg-cust-dark-blue! border-2! border-white/50!"
+                className="group flex flex-col w-full h-full bg-cust-dark-blue! border-2! border-white/50!"
                 styles={{
                   body: {
                     flex: 1,
