@@ -3,7 +3,7 @@ import { Transaction, CreateTransactionPayload } from '@/types';
 
 export const transactionService = {
   getAll: async (): Promise<Transaction[]> => {
-    const res = await apiClient.get<Transaction[]>('/transactions?_sort=createdAt&_order=desc');
+    const res = await apiClient.get<Transaction[]>('/transactions');
     return res.data;
   },
 
@@ -13,15 +13,15 @@ export const transactionService = {
   },
 
   getByUserId: async (userId: string): Promise<Transaction[]> => {
-    const res = await apiClient.get<Transaction[]>(
-      `/transactions?userId=${userId}&_sort=createdAt&_order=desc`
-    );
-    return res.data;
+    // Fetch all and filter client-side for maximum reliability with json-server
+    const res = await apiClient.get<Transaction[]>('/transactions');
+    return res.data.filter(t => String(t.userId) === String(userId));
   },
 
   create: async (payload: CreateTransactionPayload): Promise<Transaction> => {
+    // Generate a unique ID if not present
     const id = `TRX${Date.now()}`;
-    const res = await apiClient.post<Transaction>('/transactions', { id, ...payload });
+    const res = await apiClient.post<Transaction>('/transactions', { ...payload, id });
     return res.data;
   },
 

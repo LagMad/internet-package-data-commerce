@@ -28,10 +28,16 @@ export function useTransactions() {
     setError(null);
     try {
       const data = await transactionService.getByUserId(userId);
-      setTransactions(data);
+      
+      // Sort by date descending (newest first) client-side
+      const sortedData = [...data].sort((a, b) => 
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
+        
+      setTransactions(sortedData);
     } catch (err) {
       setError('Gagal memuat riwayat transaksi');
-      console.error(err);
+      console.error('Fetch Error:', err);
     } finally {
       setLoading(false);
     }

@@ -89,50 +89,52 @@ export default function AppLayout({ children }: AppLayoutProps) {
       {/* Sidebar */}
       <aside
         className={cn(
-          "flex flex-col bg-cust-black transition-all duration-300",
+          "flex flex-col bg-cust-black transition-all duration-300 z-50",
           collapsed ? "w-16" : "w-55",
         )}
       >
-        {/* Logo */}
-        <div 
-          className="h-16 flex items-center justify-center px-4 gap-2 cursor-pointer hover:bg-white/5 transition-colors"
-          onClick={() => router.push("/")}
-        >
-          <WifiOutlined className="text-xl text-cust-red! shrink-0" />
-          {!collapsed && (
-            <span className="font-bold text-white text-base truncate">
-              <span className="text-cust-red">DataPaket</span>.id
-            </span>
-          )}
-        </div>
+        <div className="sticky top-0">
+          {/* Logo */}
+          <div
+            className="h-16 flex items-center justify-center px-4 gap-2 cursor-pointer hover:bg-white/5 transition-colors"
+            onClick={() => router.push("/")}
+          >
+            <WifiOutlined className="text-xl text-cust-red! shrink-0" />
+            {!collapsed && (
+              <span className="font-bold text-white text-base truncate">
+                <span className="text-cust-red">DataPaket</span>.id
+              </span>
+            )}
+          </div>
 
-        {/* Nav */}
-        <nav className="flex-1 pt-2 px-2 space-y-1">
-          {menuItems.map((item) => {
-            const active = pathname === item.key;
-            return (
-              <button
-                key={item.key}
-                onClick={() => router.push(item.key)}
-                className={cn(
-                  "cursor-pointer w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors",
-                  active
-                    ? "text-cust-red font-medium"
-                    : "text-cust-white hover:bg-cust-red",
-                )}
-              >
-                <span className="text-base shrink-0">{item.icon}</span>
-                {!collapsed && <span className="truncate">{item.label}</span>}
-              </button>
-            );
-          })}
-        </nav>
+          {/* Nav */}
+          <nav className="flex-1 pt-2 px-2 space-y-1">
+            {menuItems.map((item) => {
+              const active = pathname === item.key;
+              return (
+                <button
+                  key={item.key}
+                  onClick={() => router.push(item.key)}
+                  className={cn(
+                    "cursor-pointer w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors",
+                    active
+                      ? "text-cust-red font-medium"
+                      : "text-cust-white hover:bg-cust-red",
+                  )}
+                >
+                  <span className="text-base shrink-0">{item.icon}</span>
+                  {!collapsed && <span className="truncate">{item.label}</span>}
+                </button>
+              );
+            })}
+          </nav>
+        </div>
       </aside>
 
       {/* Main */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Header */}
-        <header className="bg-cust-black h-16 flex flex-row items-center justify-between px-4 sticky top-0 z-10">
+        <header className="bg-cust-black h-16 flex flex-row items-center justify-between px-4 sticky top-0 z-10 shadow-xl shadow-white/20">
           <Button
             variant="ghost"
             className="text-cust-red! bg-transparent! border-0! hover:brightness-80"
