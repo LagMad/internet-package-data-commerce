@@ -1,12 +1,20 @@
 "use client";
 
 import React from "react";
+import { usePathname } from "next/navigation";
 import { Typography } from "antd";
 import { WifiOutlined } from "@ant-design/icons";
 
 const { Text, Paragraph } = Typography;
 
 const Footer = () => {
+  const pathname = usePathname();
+
+  const hideFooter =
+    pathname.startsWith("/admin/") || pathname.startsWith("/customer/");
+
+  if (hideFooter) return null;
+
   return (
     <footer className="flex flex-col justify-center items-center bg-cust-black text-gray-400 py-8 px-4 text-center">
       <div className="flex items-center justify-center gap-2 mb-3">

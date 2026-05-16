@@ -13,7 +13,14 @@ const { Title, Text } = Typography;
 const Navbar = () => {
   const pathname = usePathname();
 
-  if (pathname === "/login") return null;
+  const hiddenPath = ["/login", "/register"];
+
+  const hideNav =
+    hiddenPath.includes(pathname) ||
+    pathname.startsWith("/admin/") ||
+    pathname.startsWith("/customer/");
+
+  if (hideNav) return null;
 
   const { user } = useAuth();
   const router = useRouter();
@@ -40,21 +47,33 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full transition-all duration-300 ease-in-out ${
-        isScrolled ? "bg-cust-black shadow-xl shadow-white/10" : ""
-      }`}
+      className={`${
+        pathname.startsWith("/customer/")
+          ? "sticky bg-cust-black shadow-xl shadow-white/10"
+          : isScrolled
+          ? "bg-cust-black shadow-xl shadow-white/10"
+          : ""
+      } top-0 z-50 w-full transition-all duration-300 ease-in-out`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <WifiOutlined
             className={`text-2xl transition-all duration-300 ease-in-out ${
-              isScrolled ? "text-cust-red!" : "text-white!"
+              pathname.startsWith("/customer/")
+                ? "text-cust-red!"
+                : isScrolled
+                ? "text-cust-red!"
+                : "text-white!"
             }`}
           />
           <Title
             level={4}
             className={`mb-0! transition-all duration-300 ease-in-out ${
-              isScrolled ? "text-cust-red!" : "text-white!"
+              pathname.startsWith("/customer/")
+                ? "text-cust-red!"
+                : isScrolled
+                ? "text-cust-red!"
+                : "text-white!"
             }`}
           >
             DataPaket
@@ -70,9 +89,9 @@ const Navbar = () => {
         <div className="flex items-center gap-3">
           {user ? (
             <>
-              <Text className="hidden sm:block text-gray-600">
+              <p className="hidden sm:block text-white!">
                 Halo, {user.name.split(" ")[0]}
-              </Text>
+              </p>
               <Button
                 onClick={() =>
                   router.push(
@@ -87,10 +106,19 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <Button className="bg-cust-red border-cust-red" onClick={() => router.push("/login")}>Masuk</Button>
+              <Button
+                className="bg-cust-red border-cust-red"
+                onClick={() => router.push("/login")}
+              >
+                Masuk
+              </Button>
               <Button
                 variant={"outline"}
-                className={`hover:brightness-80 ${isScrolled ? "border-cust-white text-cust-white" : "border-white! text-white!"}`}
+                className={`hover:brightness-80 ${
+                  isScrolled
+                    ? "border-cust-white text-cust-white"
+                    : "border-white! text-white!"
+                }`}
                 onClick={() => router.push("/login")}
               >
                 Daftar
