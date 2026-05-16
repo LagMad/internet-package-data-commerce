@@ -41,7 +41,7 @@ const Navbar = () => {
   return (
     <header
       className={`fixed top-0 z-50 w-full transition-all duration-300 ease-in-out ${
-        isScrolled ? "bg-white shadow-md" : ""
+        isScrolled ? "bg-cust-black shadow-xl shadow-white/10" : ""
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -60,7 +60,7 @@ const Navbar = () => {
             DataPaket
             <span
               className={`ml-0.5 transition-all duration-300 ease-in-out ${
-                isScrolled ? "text-cust-black" : "text-white"
+                isScrolled ? "text-cust-white" : "text-white"
               }`}
             >
               .id
@@ -90,7 +90,7 @@ const Navbar = () => {
               <Button className="bg-cust-red border-cust-red" onClick={() => router.push("/login")}>Masuk</Button>
               <Button
                 variant={"outline"}
-                className={`hover:brightness-80 ${isScrolled ? "border-cust-black text-cust-black" : "border-white! text-white!"}`}
+                className={`hover:brightness-80 ${isScrolled ? "border-cust-white text-cust-white" : "border-white! text-white!"}`}
                 onClick={() => router.push("/login")}
               >
                 Daftar

@@ -29,12 +29,12 @@ const Features = ({ features }: FeaturesProps) => {
           {features.map((f, i) => (
             <Col key={i} xs={24} sm={12} md={6}>
               <Card
-                className="text-center h-full"
+                className="text-center h-full bg-cust-red! border-white/10!"
                 styles={{ body: { padding: 24 } }}
               >
-                <div className="mb-3">{f.icon}</div>
-                <Title level={5}>{f.title}</Title>
-                <Paragraph className="text-gray-500 text-sm">
+                <div className="mb-3 text-white">{f.icon}</div>
+                <Title level={5} className="text-white!">{f.title}</Title>
+                <Paragraph className="text-white! text-sm">
                   {f.desc}
                 </Paragraph>
               </Card>
