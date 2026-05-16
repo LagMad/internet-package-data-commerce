@@ -2,102 +2,77 @@
 
 import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { Typography } from "antd";
 import { WifiOutlined } from "@ant-design/icons";
-import { User } from "@/types";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "../ui/button";
 
-const { Title, Text } = Typography;
-
 const Navbar = () => {
   const pathname = usePathname();
+  const router = useRouter();
+  const { user } = useAuth();
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  const hiddenPath = ["/login", "/register"];
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 150);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
+  const hiddenPaths = ["/login", "/register"];
   const hideNav =
-    hiddenPath.includes(pathname) ||
+    hiddenPaths.includes(pathname) ||
     pathname.startsWith("/admin/") ||
     pathname.startsWith("/customer/");
 
   if (hideNav) return null;
 
-  const { user } = useAuth();
-  const router = useRouter();
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const scrollThreshold = 150;
-
-      if (scrollTop > scrollThreshold) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const isOnCustomer = pathname.startsWith("/customer/");
+  const logoColored = isOnCustomer || isScrolled;
 
   return (
     <header
-      className={`${
-        pathname.startsWith("/customer/")
-          ? "sticky bg-cust-black shadow-xl shadow-white/10"
-          : isScrolled
-          ? "bg-cust-black shadow-xl shadow-white/10"
-          : ""
-      } top-0 z-50 w-full transition-all duration-300 ease-in-out`}
+      className={`top-0 z-50 w-full transition-all duration-300 ease-in-out fixed ${
+        isScrolled ? "bg-cust-black shadow-xl shadow-white/10" : ""
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+
+        {/* Logo */}
         <div className="flex items-center gap-2">
           <WifiOutlined
-            className={`text-2xl transition-all duration-300 ease-in-out ${
-              pathname.startsWith("/customer/")
-                ? "text-cust-red!"
-                : isScrolled
-                ? "text-cust-red!"
-                : "text-white!"
+            className={`text-2xl transition-colors duration-300 ${
+              logoColored ? "text-cust-red!" : "text-white!"
             }`}
           />
-          <Title
-            level={4}
-            className={`mb-0! transition-all duration-300 ease-in-out ${
-              pathname.startsWith("/customer/")
-                ? "text-cust-red!"
-                : isScrolled
-                ? "text-cust-red!"
-                : "text-white!"
+          <h4
+            className={`mb-0 font-semibold text-lg transition-colors duration-300 ${
+              logoColored ? "text-cust-red!" : "text-white!"
             }`}
           >
             DataPaket
             <span
-              className={`ml-0.5 transition-all duration-300 ease-in-out ${
+              className={`ml-0.5 transition-colors duration-300 ${
                 isScrolled ? "text-cust-white" : "text-white"
               }`}
             >
               .id
             </span>
-          </Title>
+          </h4>
         </div>
+
+        {/* Actions */}
         <div className="flex items-center gap-3">
           {user ? (
             <>
-              <p className="hidden sm:block text-white!">
+              <p className="hidden sm:block text-white">
                 Halo, {user.name.split(" ")[0]}
               </p>
               <Button
                 onClick={() =>
                   router.push(
-                    user.role === "admin"
-                      ? "/admin/dashboard"
-                      : "/customer/packages",
+                    user.role === "admin" ? "/admin/dashboard" : "/customer/packages"
                   )
                 }
               >
@@ -113,11 +88,9 @@ const Navbar = () => {
                 Masuk
               </Button>
               <Button
-                variant={"outline"}
+                variant="outline"
                 className={`hover:brightness-80 ${
-                  isScrolled
-                    ? "border-cust-white text-cust-white"
-                    : "border-white! text-white!"
+                  isScrolled ? "border-cust-white text-cust-white" : "border-white! text-white!"
                 }`}
                 onClick={() => router.push("/login")}
               >
@@ -126,6 +99,7 @@ const Navbar = () => {
             </>
           )}
         </div>
+
       </div>
     </header>
   );

@@ -100,7 +100,7 @@ export default function ProfilePage() {
                   id="email"
                   {...regProfile("email")}
                   disabled
-                  className="bg-white/5 border-white/5 text-white"
+                  className="bg-white/5 border-white/5"
                 />
               </div>
 

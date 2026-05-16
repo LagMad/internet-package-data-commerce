@@ -88,11 +88,11 @@ export default function AdminDashboardPage() {
       {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         {stats.map((stat) => (
-          <Card key={stat.title}>
+          <Card key={stat.title} className='bg-cust-black'>
             <CardContent className="">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">{stat.title}</p>
+              <div className="flex items-center justify-between text-white">
+                <div className=''>
+                  <p className="text-sm text-cust-red">{stat.title}</p>
                   <p className="text-2xl font-semibold mt-1">{stat.value}</p>
                 </div>
                 {stat.icon}
@@ -103,19 +103,19 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* Recent Transactions */}
-      <Card>
+      <Card className='bg-cust-black text-white'>
         <CardHeader>
           <CardTitle className="text-base">Transaksi Terbaru</CardTitle>
         </CardHeader>
         <CardContent className="overflow-x-auto">
           <Table>
-            <TableHeader>
+            <TableHeader className='bg-cust-red text-white'>
               <TableRow>
-                <TableHead>ID Transaksi</TableHead>
-                <TableHead>Paket</TableHead>
-                <TableHead>Harga</TableHead>
-                <TableHead>Tanggal</TableHead>
-                <TableHead>Status</TableHead>
+                <TableHead className='text-white'>ID Transaksi</TableHead>
+                <TableHead className='text-white'>Paket</TableHead>
+                <TableHead className='text-white'>Harga</TableHead>
+                <TableHead className='text-white'>Tanggal</TableHead>
+                <TableHead className='text-white'>Status</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -129,7 +129,7 @@ export default function AdminDashboardPage() {
                 recentTransactions.map((trx: Transaction) => (
                   <TableRow key={trx.id}>
                     <TableCell>
-                      <code className="text-xs bg-muted px-1 py-0.5 rounded">{trx.id}</code>
+                      <code className="text-xs px-1 py-0.5 rounded">{trx.id}</code>
                     </TableCell>
                     <TableCell>{trx.packageName}</TableCell>
                     <TableCell>{formatCurrency(trx.packagePrice)}</TableCell>

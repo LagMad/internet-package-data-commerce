@@ -100,10 +100,10 @@ export default function AdminTransactionsPage() {
         <h2 className="text-xl font-semibold text-white">Manajemen Transaksi</h2>
       </div>
 
-      <Card>
-        <CardContent className="">
+      <Card className='bg-cust-black'>
+        <CardContent className="text-white!">
           <div className="mb-4 relative max-w-sm">
-            <SearchOutlined className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm" />
+            <SearchOutlined className="absolute left-3 top-1/2 -translate-y-1/2 text-black! text-sm" />
             <Input
               placeholder="Cari ID, No. HP, atau Paket..."
               value={search}
@@ -121,14 +121,14 @@ export default function AdminTransactionsPage() {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>ID Transaksi</TableHead>
-                    <TableHead>No. HP</TableHead>
-                    <TableHead>Paket</TableHead>
-                    <TableHead>Harga</TableHead>
-                    <TableHead>Metode</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Tanggal</TableHead>
-                    <TableHead>Aksi</TableHead>
+                    <TableHead className='text-white!'>ID Transaksi</TableHead>
+                    <TableHead className='text-white!'>No. HP</TableHead>
+                    <TableHead className='text-white!'>Paket</TableHead>
+                    <TableHead className='text-white!'>Harga</TableHead>
+                    <TableHead className='text-white!'>Metode</TableHead>
+                    <TableHead className='text-white!'>Status</TableHead>
+                    <TableHead className='text-white!'>Tanggal</TableHead>
+                    <TableHead className='text-white!'>Aksi</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -142,7 +142,7 @@ export default function AdminTransactionsPage() {
                     filtered.map((trx) => (
                       <TableRow key={trx.id}>
                         <TableCell>
-                          <code className="text-xs bg-muted px-1 py-0.5 rounded">{trx.id}</code>
+                          <code className="text-xs bg-white text-cust-black px-1 py-0.5 rounded">{trx.id}</code>
                         </TableCell>
                         <TableCell>{trx.phoneNumber}</TableCell>
                         <TableCell>

@@ -112,11 +112,11 @@ export default function AdminCustomersPage() {
         </Button>
       </div>
 
-      <Card>
-        <CardContent className="">
+      <Card className='bg-cust-black'>
+        <CardContent className="text-white!">
           {/* Search */}
           <div className="mb-4 relative max-w-sm">
-            <SearchOutlined className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm" />
+            <SearchOutlined className="absolute left-3 top-1/2 -translate-y-1/2 text-black! text-sm" />
             <Input
               placeholder="Cari nama atau email..."
               value={search}
@@ -133,14 +133,14 @@ export default function AdminCustomersPage() {
           ) : (
             <div className="overflow-x-auto">
               <Table>
-                <TableHeader>
+                <TableHeader className='bg-cust-red!'>
                   <TableRow>
-                    <TableHead>Nama</TableHead>
-                    <TableHead>Email</TableHead>
-                    <TableHead>No. HP</TableHead>
-                    <TableHead>Role</TableHead>
-                    <TableHead>Bergabung</TableHead>
-                    <TableHead>Aksi</TableHead>
+                    <TableHead className='text-white!'>Nama</TableHead>
+                    <TableHead className='text-white!'>Email</TableHead>
+                    <TableHead className='text-white!'>No. HP</TableHead>
+                    <TableHead className='text-white!'>Role</TableHead>
+                    <TableHead className='text-white!'>Bergabung</TableHead>
+                    <TableHead className='text-white!'>Aksi</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -277,7 +277,7 @@ export default function AdminCustomersPage() {
             </div>
 
             <div className="flex justify-end gap-2 pt-2">
-              <Button type="button" variant="outline" onClick={() => setModalOpen(false)}>
+              <Button type="button" variant="outline" className='text-black! border-black!' onClick={() => setModalOpen(false)}>
                 Batal
               </Button>
               <Button type="submit" disabled={loading}>

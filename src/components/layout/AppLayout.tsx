@@ -60,6 +60,8 @@ export default function AppLayout({ children }: AppLayoutProps) {
       icon: <FileTextOutlined />,
       label: "Transaksi",
     },
+    
+    { key: "/admin/profile", icon: <UserOutlined />, label: "Profil Saya" },
   ];
 
   const customerMenuItems = [

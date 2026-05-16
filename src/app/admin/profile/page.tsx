@@ -79,11 +79,11 @@ export default function ProfilePage() {
         <UserOutlined /> Profil Saya
       </h2>
 
-      <div className="flex flex-row gap-10 w-full">
+      <div className="flex flex-row gap-10 w-full ">
         {/* Basic Info */}
-        <Card className="bg-white w-1/2">
+        <Card className="bg-cust-black w-1/2">
           <CardHeader>
-            <CardTitle className="text-lg text-black font-bold">
+            <CardTitle className="text-lg text-white font-bold">
               Informasi Dasar
             </CardTitle>
           </CardHeader>
@@ -93,7 +93,7 @@ export default function ProfilePage() {
               className="space-y-4"
             >
               <div className="space-y-1">
-                <Label htmlFor="email">Email (Tidak dapat diubah)</Label>
+                <Label htmlFor="email" className="text-white">Email (Tidak dapat diubah)</Label>
                 <Input
                   id="email"
                   {...regProfile("email")}
@@ -103,11 +103,12 @@ export default function ProfilePage() {
               </div>
 
               <div className="space-y-1">
-                <Label htmlFor="name">Nama Lengkap</Label>
+                <Label htmlFor="name" className="text-white">Nama Lengkap</Label>
                 <Input
                   id="name"
                   {...regProfile("name", { required: "Nama wajib diisi" })}
                   placeholder="Nama Anda"
+                  
                 />
                 {profileErrors.name && (
                   <p className="text-xs text-destructive">
@@ -117,7 +118,7 @@ export default function ProfilePage() {
               </div>
 
               <div className="space-y-1">
-                <Label htmlFor="phone">No. HP</Label>
+                <Label htmlFor="phone" className="text-white">No. HP</Label>
                 <Input
                   id="phone"
                   {...regProfile("phone", { required: "No. HP wajib diisi" })}
@@ -145,9 +146,9 @@ export default function ProfilePage() {
         </Card>
 
         {/* Password */}
-        <Card className="bg-white w-1/2">
+        <Card className="bg-cust-black text-white w-1/2">
           <CardHeader className="flex flex-row items-center justify-between space-y-0">
-            <CardTitle className="text-lg text-black font-bold">Keamanan</CardTitle>
+            <CardTitle className="text-lg font-bold">Keamanan</CardTitle>
           </CardHeader>
           <CardContent>
             {isChangingPassword ? (
@@ -219,7 +220,7 @@ export default function ProfilePage() {
               </form>
             ) : (
               <div className="space-y-3">
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm ">
                   Disarankan untuk memperbarui password secara berkala untuk
                   menjaga keamanan akun Anda.
                 </p>

@@ -60,7 +60,10 @@ const CATEGORY_OPTIONS: { label: string; value: PackageCategory }[] = [
   { label: "Gaming", value: "gaming" },
 ];
 
-const CATEGORY_VARIANT: Record<string, "default" | "secondary" | "destructive" | "outline"> = {
+const CATEGORY_VARIANT: Record<
+  string,
+  "default" | "secondary" | "destructive" | "outline"
+> = {
   daily: "outline",
   monthly: "default",
   unlimited: "secondary",
@@ -78,28 +81,48 @@ type PackageFormValues = {
 };
 
 export default function AdminPackagesPage() {
-  const { packages, loading, fetchPackages, createPackage, updatePackage, deletePackage } =
-    usePackages();
+  const {
+    packages,
+    loading,
+    fetchPackages,
+    createPackage,
+    updatePackage,
+    deletePackage,
+  } = usePackages();
   const [modalOpen, setModalOpen] = useState(false);
   const [editTarget, setEditTarget] = useState<Package | null>(null);
   const [search, setSearch] = useState("");
 
-  const { register, handleSubmit, reset, setValue, control, formState: { errors } } =
-    useForm<PackageFormValues>({
-      defaultValues: { isActive: true, category: "monthly" },
-    });
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    control,
+    formState: { errors },
+  } = useForm<PackageFormValues>({
+    defaultValues: { isActive: true, category: "monthly" },
+  });
 
   useEffect(() => {
     fetchPackages();
   }, [fetchPackages]);
 
   const filtered = packages.filter((p) =>
-    p.name.toLowerCase().includes(search.toLowerCase())
+    p.name.toLowerCase().includes(search.toLowerCase()),
   );
 
   const openCreate = () => {
     setEditTarget(null);
-    reset({ isActive: true, category: "monthly", name: "", quota: "", validityDays: 30, price: 0, description: "" });
+    reset({
+      isActive: true,
+      category: "monthly",
+      name: "",
+      quota: "",
+      validityDays: 30,
+      price: 0,
+      description: "",
+    });
     setModalOpen(true);
   };
 
@@ -128,12 +151,16 @@ export default function AdminPackagesPage() {
 
     if (editTarget) {
       const ok = await updatePackage(editTarget.id, payload);
-      if (ok) { toast.success("Paket berhasil diperbarui"); setModalOpen(false); }
-      else toast.error("Gagal memperbarui paket");
+      if (ok) {
+        toast.success("Paket berhasil diperbarui");
+        setModalOpen(false);
+      } else toast.error("Gagal memperbarui paket");
     } else {
       const ok = await createPackage(payload);
-      if (ok) { toast.success("Paket berhasil ditambahkan"); setModalOpen(false); }
-      else toast.error("Gagal menambahkan paket");
+      if (ok) {
+        toast.success("Paket berhasil ditambahkan");
+        setModalOpen(false);
+      } else toast.error("Gagal menambahkan paket");
     }
   };
 
@@ -145,24 +172,27 @@ export default function AdminPackagesPage() {
 
   const handleToggleActive = async (pkg: Package) => {
     const ok = await updatePackage(pkg.id, { isActive: !pkg.isActive });
-    if (ok) toast.success(`Paket ${!pkg.isActive ? "diaktifkan" : "dinonaktifkan"}`);
+    if (ok)
+      toast.success(`Paket ${!pkg.isActive ? "diaktifkan" : "dinonaktifkan"}`);
   };
 
   return (
     <div>
       {/* Page Header */}
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold text-white">Manajemen Paket Data</h2>
+        <h2 className="text-xl font-semibold text-white">
+          Manajemen Paket Data
+        </h2>
         <Button onClick={openCreate} size="sm" className="py-5 px-10!">
           <PlusOutlined className="mr-1" /> Tambah Paket
         </Button>
       </div>
 
-      <Card>
+      <Card className="bg-cust-black text-white">
         <CardContent className="">
           {/* Search */}
           <div className="mb-4 relative max-w-sm">
-            <SearchOutlined className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm" />
+            <SearchOutlined className="absolute left-3 top-1/2 -translate-y-1/2 text-black! text-sm" />
             <Input
               placeholder="Cari nama paket..."
               value={search}
@@ -179,34 +209,45 @@ export default function AdminPackagesPage() {
           ) : (
             <div className="overflow-x-auto">
               <Table>
-                <TableHeader>
+                <TableHeader className="bg-cust-red!">
                   <TableRow>
-                    <TableHead>Nama Paket</TableHead>
-                    <TableHead>Kuota</TableHead>
-                    <TableHead>Masa Aktif</TableHead>
-                    <TableHead>Harga</TableHead>
-                    <TableHead>Kategori</TableHead>
-                    <TableHead>Aktif</TableHead>
-                    <TableHead>Aksi</TableHead>
+                    <TableHead className="text-white!">Nama Paket</TableHead>
+                    <TableHead className="text-white!">Kuota</TableHead>
+                    <TableHead className="text-white!">Masa Aktif</TableHead>
+                    <TableHead className="text-white!">Harga</TableHead>
+                    <TableHead className="text-white!">Kategori</TableHead>
+                    <TableHead className="text-white!">Aktif</TableHead>
+                    <TableHead className="text-white!">Aksi</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {filtered.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={7} className="text-center text-muted-foreground py-10">
+                      <TableCell
+                        colSpan={7}
+                        className="text-center text-muted-foreground py-10"
+                      >
                         Tidak ada data paket
                       </TableCell>
                     </TableRow>
                   ) : (
                     filtered.map((pkg) => (
                       <TableRow key={pkg.id}>
-                        <TableCell className="font-medium">{pkg.name}</TableCell>
+                        <TableCell className="font-medium">
+                          {pkg.name}
+                        </TableCell>
                         <TableCell>{pkg.quota}</TableCell>
                         <TableCell>{pkg.validityDays} hari</TableCell>
                         <TableCell>{formatCurrency(pkg.price)}</TableCell>
                         <TableCell>
-                          <Badge variant={CATEGORY_VARIANT[pkg.category] ?? "outline"}>
-                            {CATEGORY_OPTIONS.find((c) => c.value === pkg.category)?.label ?? pkg.category}
+                          <Badge
+                            variant={
+                              CATEGORY_VARIANT[pkg.category] ?? "outline"
+                            }
+                          >
+                            {CATEGORY_OPTIONS.find(
+                              (c) => c.value === pkg.category,
+                            )?.label ?? pkg.category}
                           </Badge>
                         </TableCell>
                         <TableCell>
@@ -217,7 +258,12 @@ export default function AdminPackagesPage() {
                         </TableCell>
                         <TableCell>
                           <div className="flex items-center gap-2">
-                            <Button variant="outline" className="border-cust-black text-cust-black" size="sm" onClick={() => openEdit(pkg)}>
+                            <Button
+                              variant="outline"
+                              className="border-white text-white"
+                              size="sm"
+                              onClick={() => openEdit(pkg)}
+                            >
                               <EditOutlined className="mr-1" /> Edit
                             </Button>
                             <AlertDialog>
@@ -228,7 +274,9 @@ export default function AdminPackagesPage() {
                               </AlertDialogTrigger>
                               <AlertDialogContent>
                                 <AlertDialogHeader>
-                                  <AlertDialogTitle>Hapus paket ini?</AlertDialogTitle>
+                                  <AlertDialogTitle>
+                                    Hapus paket ini?
+                                  </AlertDialogTitle>
                                   <AlertDialogDescription>
                                     Data yang dihapus tidak bisa dikembalikan.
                                   </AlertDialogDescription>
@@ -257,7 +305,12 @@ export default function AdminPackagesPage() {
       </Card>
 
       {/* Modal */}
-      <Dialog open={modalOpen} onOpenChange={(open) => { if (!open) setModalOpen(false); }}>
+      <Dialog
+        open={modalOpen}
+        onOpenChange={(open) => {
+          if (!open) setModalOpen(false);
+        }}
+      >
         <DialogContent className="max-w-lg">
           <DialogHeader>
             <DialogTitle>
@@ -265,7 +318,10 @@ export default function AdminPackagesPage() {
             </DialogTitle>
           </DialogHeader>
 
-          <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4 mt-2">
+          <form
+            onSubmit={handleSubmit(handleFormSubmit)}
+            className="space-y-4 mt-2"
+          >
             {/* Nama */}
             <div className="space-y-1">
               <Label htmlFor="name">Nama Paket</Label>
@@ -274,7 +330,11 @@ export default function AdminPackagesPage() {
                 placeholder="cth: Standard 10GB"
                 {...register("name", { required: "Nama wajib diisi" })}
               />
-              {errors.name && <p className="text-xs text-destructive">{errors.name.message}</p>}
+              {errors.name && (
+                <p className="text-xs text-destructive">
+                  {errors.name.message}
+                </p>
+              )}
             </div>
 
             {/* Kuota + Masa Aktif */}
@@ -286,7 +346,11 @@ export default function AdminPackagesPage() {
                   placeholder="cth: 10 GB"
                   {...register("quota", { required: "Kuota wajib diisi" })}
                 />
-                {errors.quota && <p className="text-xs text-destructive">{errors.quota.message}</p>}
+                {errors.quota && (
+                  <p className="text-xs text-destructive">
+                    {errors.quota.message}
+                  </p>
+                )}
               </div>
               <div className="space-y-1">
                 <Label htmlFor="validityDays">Masa Aktif (hari)</Label>
@@ -295,9 +359,16 @@ export default function AdminPackagesPage() {
                   type="number"
                   min={1}
                   placeholder="30"
-                  {...register("validityDays", { required: "Wajib diisi", min: { value: 1, message: "Min 1 hari" } })}
+                  {...register("validityDays", {
+                    required: "Wajib diisi",
+                    min: { value: 1, message: "Min 1 hari" },
+                  })}
                 />
-                {errors.validityDays && <p className="text-xs text-destructive">{errors.validityDays.message}</p>}
+                {errors.validityDays && (
+                  <p className="text-xs text-destructive">
+                    {errors.validityDays.message}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -310,9 +381,16 @@ export default function AdminPackagesPage() {
                   type="number"
                   min={0}
                   placeholder="85000"
-                  {...register("price", { required: "Harga wajib diisi", min: { value: 0, message: "Min 0" } })}
+                  {...register("price", {
+                    required: "Harga wajib diisi",
+                    min: { value: 0, message: "Min 0" },
+                  })}
                 />
-                {errors.price && <p className="text-xs text-destructive">{errors.price.message}</p>}
+                {errors.price && (
+                  <p className="text-xs text-destructive">
+                    {errors.price.message}
+                  </p>
+                )}
               </div>
               <div className="space-y-1">
                 <Label>Kategori</Label>
@@ -335,7 +413,11 @@ export default function AdminPackagesPage() {
                     </Select>
                   )}
                 />
-                {errors.category && <p className="text-xs text-destructive">{errors.category.message}</p>}
+                {errors.category && (
+                  <p className="text-xs text-destructive">
+                    {errors.category.message}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -356,14 +438,22 @@ export default function AdminPackagesPage() {
                 control={control}
                 name="isActive"
                 render={({ field }) => (
-                  <Switch checked={field.value} onCheckedChange={field.onChange} />
+                  <Switch
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
                 )}
               />
               <Label>Status Aktif</Label>
             </div>
 
             <div className="flex justify-end gap-2 pt-2">
-              <Button type="button" variant="outline" onClick={() => setModalOpen(false)}>
+              <Button
+                type="button"
+                variant="outline"
+                className="text-black! border-black!"
+                onClick={() => setModalOpen(false)}
+              >
                 Batal
               </Button>
               <Button type="submit" disabled={loading}>
