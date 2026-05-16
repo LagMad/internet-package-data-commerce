@@ -58,7 +58,12 @@
       "price": 50000,
       "category": "monthly",
       "description": "Paket bulanan ekonomis untuk penggunaan standar. Browsing, sosmed, dan streaming ringan.",
-      "features": ["5 GB Kuota Utama", "Berlaku 30 Hari", "Semua Jaringan", "Free App Selected"],
+      "features": [
+        "5 GB Kuota Utama",
+        "Berlaku 30 Hari",
+        "Semua Jaringan",
+        "Free App Selected"
+      ],
       "isActive": true,
       "createdAt": "2024-01-01T00:00:00.000Z"
     },
@@ -70,7 +75,13 @@
       "price": 85000,
       "category": "monthly",
       "description": "Paket bulanan standar dengan kuota lebih besar. Ideal untuk streaming dan video call.",
-      "features": ["10 GB Kuota Utama", "Berlaku 30 Hari", "Semua Jaringan", "Free App Selected", "Prioritas Jaringan"],
+      "features": [
+        "10 GB Kuota Utama",
+        "Berlaku 30 Hari",
+        "Semua Jaringan",
+        "Free App Selected",
+        "Prioritas Jaringan"
+      ],
       "isActive": true,
       "createdAt": "2024-01-01T00:00:00.000Z"
     },
@@ -82,7 +93,14 @@
       "price": 150000,
       "category": "monthly",
       "description": "Paket premium dengan kuota besar untuk pengguna aktif. Streaming HD tanpa batas.",
-      "features": ["20 GB Kuota Utama", "Berlaku 30 Hari", "Semua Jaringan", "Free All App", "Prioritas Jaringan", "Bonus 5GB Malam"],
+      "features": [
+        "20 GB Kuota Utama",
+        "Berlaku 30 Hari",
+        "Semua Jaringan",
+        "Free All App",
+        "Prioritas Jaringan",
+        "Bonus 5GB Malam"
+      ],
       "isActive": true,
       "createdAt": "2024-01-01T00:00:00.000Z"
     },
@@ -94,7 +112,13 @@
       "price": 200000,
       "category": "unlimited",
       "description": "Paket unlimited dengan kecepatan fair usage policy. Cocok untuk kerja dari rumah.",
-      "features": ["Unlimited Kuota", "Berlaku 30 Hari", "Speed FUP 1 Mbps", "Free All App", "Prioritas Jaringan"],
+      "features": [
+        "Unlimited Kuota",
+        "Berlaku 30 Hari",
+        "Speed FUP 1 Mbps",
+        "Free All App",
+        "Prioritas Jaringan"
+      ],
       "isActive": true,
       "createdAt": "2024-01-01T00:00:00.000Z"
     },
@@ -106,7 +130,14 @@
       "price": 300000,
       "category": "unlimited",
       "description": "Paket unlimited terbaik dengan kecepatan penuh. Untuk profesional dan heavy user.",
-      "features": ["Unlimited Kuota", "Berlaku 30 Hari", "Speed Full 4G/5G", "Free All App", "Prioritas Tertinggi", "Bonus Kuota Internasional"],
+      "features": [
+        "Unlimited Kuota",
+        "Berlaku 30 Hari",
+        "Speed Full 4G/5G",
+        "Free All App",
+        "Prioritas Tertinggi",
+        "Bonus Kuota Internasional"
+      ],
       "isActive": true,
       "createdAt": "2024-01-01T00:00:00.000Z"
     },
@@ -118,7 +149,13 @@
       "price": 95000,
       "category": "gaming",
       "description": "Paket khusus gaming dengan ping rendah dan latency minimal. Menang terus!",
-      "features": ["10 GB Kuota Gaming", "Berlaku 30 Hari", "Low Ping Guaranteed", "Anti Throttle", "Akses Server Game Prioritas"],
+      "features": [
+        "10 GB Kuota Gaming",
+        "Berlaku 30 Hari",
+        "Low Ping Guaranteed",
+        "Anti Throttle",
+        "Akses Server Game Prioritas"
+      ],
       "isActive": true,
       "createdAt": "2024-01-01T00:00:00.000Z"
     },
