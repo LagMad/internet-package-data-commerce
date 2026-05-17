@@ -61,13 +61,15 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[linear-gradient(to_top,#2D4059_25%,#EA5455_50%,#F07B3F_75%,#FFD460_100%)] flex items-center justify-center p-4">
-      <div className="absolute inset-x-0 bottom-0 h-full w-full">
+    <div className="min-h-screen bg-[linear-gradient(to_top,#2D4059_25%,#EA5455_50%,#F07B3F_75%,#FFD460_100%)] flex items-center justify-center p-4 py-12 relative overflow-hidden">
+      <div className="absolute inset-x-0 bottom-0 h-full w-full pointer-events-none">
         <CrowdCanvas src="/images/all-peeps.png" rows={15} cols={7} />
       </div>
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-full bg-cust-black/40" />
-      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 aspect-square h-2/3 bg-cust-black/70 rounded-full blur-2xl" />
+      <div className="pointer-events-none absolute inset-0 bg-cust-black/40" />
+      
       <div className="w-full max-w-md relative z-10">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aspect-square w-[150%] max-w-none bg-cust-black/60 rounded-full blur-3xl -z-10" />
+        
         {/* Logo */}
         <div className="text-center mb-6">
           <div className="relative inline-block mb-3">

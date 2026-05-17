@@ -236,7 +236,7 @@ export function LoadingCarousel({
                       priority
                     />
                     {backgroundGradient && (
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                      <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent" />
                     )}
 
                     {backgroundTips ? (
@@ -296,7 +296,7 @@ export function LoadingCarousel({
                 {(displayTips || []).map((_, index) => (
                   <motion.button
                     key={index}
-                    className={`h-1 w-8 flex-shrink-0 rounded-full ${
+                    className={`h-1 w-8 shrink-0 rounded-full ${
                       index === current ? "bg-muted" : "bg-primary"
                     }`}
                     initial={false}

@@ -74,7 +74,7 @@ export default function CustomerTransactionsPage() {
   return (
     <div className="">
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
-        <div>
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-left w-full">
           <h2 className="text-2xl font-bold text-white flex items-center gap-2">
             <HistoryOutlined /> Riwayat Transaksi
           </h2>

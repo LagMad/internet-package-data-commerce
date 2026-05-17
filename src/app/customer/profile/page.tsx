@@ -75,13 +75,13 @@ export default function ProfilePage() {
 
   return (
     <div className="flex flex-col h-full w-full">
-      <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-2">
+      <h2 className="text-2xl font-bold text-white mb-8 flex justify-center lg:justify-start items-center gap-2 text-center lg:text-left">
         <UserOutlined /> Profil Saya
       </h2>
 
-      <div className="flex flex-row gap-10 w-full">
+      <div className="flex flex-col lg:flex-row gap-10 w-full ">
         {/* Basic Info */}
-        <Card className="bg-cust-black w-1/2">
+        <Card className="bg-cust-black w-full lg:w-1/2">
           <CardHeader>
             <CardTitle className="text-lg text-white font-bold">
               Informasi Dasar
@@ -151,7 +151,7 @@ export default function ProfilePage() {
         </Card>
 
         {/* Password */}
-        <Card className="bg-cust-black w-1/2">
+        <Card className="bg-cust-black w-full lg:w-1/2">
           <CardHeader className="flex flex-row items-center justify-between space-y-0">
             <CardTitle className="text-lg text-white font-bold">
               Keamanan

@@ -115,7 +115,7 @@ export default function CustomerPackagesPage() {
   return (
     <div className="w-full">
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
-        <div>
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-left w-full">
           <h2 className="text-2xl font-bold text-white flex items-center gap-2">
             <ShoppingCartOutlined /> Beli Paket Data
           </h2>

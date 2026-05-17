@@ -179,8 +179,8 @@ export default function AdminPackagesPage() {
   return (
     <div>
       {/* Page Header */}
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold text-white">
+      <div className="flex flex-col lg:flex-row gap-5 items-center justify-between mb-6">
+        <h2 className="text-xl font-semibold text-white text-center lg:text-left">
           Manajemen Paket Data
         </h2>
         <Button onClick={openCreate} size="sm" className="py-5 px-10!">

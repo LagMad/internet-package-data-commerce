@@ -96,8 +96,8 @@ export default function AdminTransactionsPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold text-white">Manajemen Transaksi</h2>
+      <div className="flex flex-col lg:flex-row gap-5 items-center justify-between mb-6 w-full">
+        <h2 className="text-xl font-semibold text-white text-center lg:text-left">Manajemen Transaksi</h2>
       </div>
 
       <Card className='bg-cust-black'>

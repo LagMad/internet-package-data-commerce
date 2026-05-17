@@ -103,7 +103,7 @@ export const BorderBeamIconButton = forwardRef<
 ) {
   return (
     <BorderBeamButton
-      className={cn("!leading-none [&_svg]:block [&_svg]:shrink-0", className)}
+      className={cn("leading-none! [&_svg]:block [&_svg]:shrink-0", className)}
       ref={ref}
       size={size}
       {...props}

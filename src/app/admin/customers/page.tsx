@@ -105,8 +105,8 @@ export default function AdminCustomersPage() {
   return (
     <div>
       {/* Page Header */}
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold text-white">Manajemen Pelanggan</h2>
+      <div className="flex flex-col lg:flex-row gap-5 items-center justify-between mb-6">
+        <h2 className="text-xl font-semibold text-white text-center lg:text-left">Manajemen Pelanggan</h2>
         <Button onClick={openCreate} size="sm" className="py-5 px-10!">
           <PlusOutlined className="mr-1" /> Tambah Pelanggan
         </Button>

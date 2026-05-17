@@ -65,10 +65,11 @@ const Navbar = () => {
         <div className="flex items-center gap-3">
           {user ? (
             <>
-              <p className="hidden sm:block text-white">
+              <p className="hidden sm:block text-white ">
                 Halo, {user.name.split(" ")[0]}
               </p>
               <Button
+                className="bg-cust-red border-cust-red"
                 onClick={() =>
                   router.push(
                     user.role === "admin"

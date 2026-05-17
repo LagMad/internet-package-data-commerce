@@ -38,10 +38,15 @@ export default function AppLayout({ children }: AppLayoutProps) {
   const pathname = usePathname();
   const { user, logout } = useAuth();
   const [collapsed, setCollapsed] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     if (!user) router.replace("/login");
   }, [user, router]);
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
 
   if (!user) return null;
 
@@ -60,7 +65,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
       icon: <FileTextOutlined />,
       label: "Transaksi",
     },
-    
+
     { key: "/admin/profile", icon: <UserOutlined />, label: "Profil Saya" },
   ];
 
@@ -87,22 +92,32 @@ export default function AppLayout({ children }: AppLayoutProps) {
   };
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex overflow-hidden">
+      {/* Mobile Backdrop */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 bg-black/60 z-[60] lg:hidden transition-opacity duration-300"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
       <aside
         className={cn(
-          "flex flex-col bg-cust-black transition-all duration-300 z-50",
-          collapsed ? "w-16" : "w-55",
+          "flex flex-col bg-cust-black transition-all duration-300 z-[70]",
+          "fixed inset-y-0 left-0 lg:relative",
+          mobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0",
+          collapsed ? "lg:w-16" : "lg:w-55",
         )}
       >
-        <div className="sticky top-0">
+        <div className="sticky top-0 h-full">
           {/* Logo */}
           <div
             className="h-16 flex items-center justify-center px-4 gap-2 cursor-pointer hover:bg-white/5 transition-colors"
             onClick={() => router.push("/")}
           >
             <WifiOutlined className="text-xl text-cust-red! shrink-0" />
-            {!collapsed && (
+            {(!collapsed || mobileOpen) && (
               <span className="font-bold text-white text-base truncate">
                 <span className="text-cust-red">DataPaket</span>.id
               </span>
@@ -125,7 +140,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
                   )}
                 >
                   <span className="text-base shrink-0">{item.icon}</span>
-                  {!collapsed && <span className="truncate">{item.label}</span>}
+                  {(!collapsed || mobileOpen) && <span className="truncate">{item.label}</span>}
                 </button>
               );
             })}
@@ -133,17 +148,29 @@ export default function AppLayout({ children }: AppLayoutProps) {
         </div>
       </aside>
 
-      {/* Main */}
-      <div className="flex-1 flex flex-col min-w-0">
+      {/* Main Container */}
+      <div className="flex-1 flex flex-col min-w-0 h-screen">
         {/* Header */}
-        <header className="bg-cust-black h-16 flex flex-row items-center justify-between px-4 sticky top-0 z-10 shadow-xl shadow-white/20">
-          <Button
-            variant="ghost"
-            className="text-cust-red! bg-transparent! border-0! hover:brightness-80"
-            onClick={() => setCollapsed((c) => !c)}
-          >
-            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-          </Button>
+        <header className="bg-cust-black h-16 flex flex-row items-center justify-between px-4 sticky top-0 z-50 shadow-xl shadow-white/20">
+          <div className="flex items-center gap-2">
+            {/* Mobile Toggle */}
+            <Button
+              variant="ghost"
+              className="lg:hidden text-cust-red! bg-transparent! border-0! hover:brightness-80"
+              onClick={() => setMobileOpen(true)}
+            >
+              <MenuUnfoldOutlined />
+            </Button>
+
+            {/* Desktop Toggle */}
+            <Button
+              variant="ghost"
+              className="hidden lg:flex text-cust-red! bg-transparent! border-0! hover:brightness-80"
+              onClick={() => setCollapsed((c) => !c)}
+            >
+              {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            </Button>
+          </div>
 
           <div className="flex items-center gap-3">
             <Badge variant={isAdmin ? "default" : "secondary"}>
@@ -188,8 +215,10 @@ export default function AppLayout({ children }: AppLayoutProps) {
         </header>
 
         {/* Content */}
-        <main className="flex-1 p-6 bg-cust-dark-blue overflow-auto">
-          {children}
+        <main className="relative flex-1 overflow-auto bg-[linear-gradient(to_top,#2D4059_25%,#EA5455_50%,#F07B3F_75%,#FFD460_100%)] p-6">
+          <div className="pointer-events-none fixed inset-x-0 top-0 z-0 h-full bg-cust-black/40" />
+
+          <div className="relative z-10">{children}</div>
         </main>
       </div>
     </div>
