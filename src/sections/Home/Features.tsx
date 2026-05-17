@@ -20,7 +20,7 @@ const Features = ({ features }: FeaturesProps) => {
           {features.map((f, i) => (
             <Card
               key={i}
-              className="text-center h-full bg-cust-red border-white/10"
+              className="group text-center h-full bg-cust-red border-white/10 hover:scale-105 hover:drop-shadow-2xl transition-all duration-300 ease-in-out"
             >
               <CardContent className="p-6">
                 <div className="mb-3 text-white">{f.icon}</div>
