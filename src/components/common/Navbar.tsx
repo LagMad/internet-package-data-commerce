@@ -88,17 +88,17 @@ const Navbar = () => {
               >
                 Masuk
               </Button>
-              <Button
+              {/* <Button
                 variant="outline"
                 className={`hover:brightness-80 ${
                   isScrolled
                     ? "border-cust-white text-cust-white"
                     : "border-white! text-white!"
                 }`}
-                onClick={() => router.push("/login")}
+                onClick={() => router.push("/register")}
               >
                 Daftar
-              </Button>
+              </Button> */}
             </>
           )}
         </div>
