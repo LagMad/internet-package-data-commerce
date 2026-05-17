@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { CrowdCanvas } from "@/components/ui/skiper-ui/skiper39";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { BorderBeamButton } from "@/components/ui/border-beam-button";
 
 export default function NotFound() {
   const router = useRouter();
@@ -165,9 +166,9 @@ export default function NotFound() {
           {description}
         </p>
 
-        <Button variant={"outline"} onClick={() => router.push("/")}>
+        <BorderBeamButton onClick={() => router.push("/")}>
           {button}
-        </Button>
+        </BorderBeamButton>
       </div>
     </main>
   );
