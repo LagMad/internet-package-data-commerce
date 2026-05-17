@@ -299,7 +299,7 @@ export { CrowdCanvas, Skiper39 };
  * Inspired by and adapted from https://codepen.io/zadvorsky/pen/xxwbBQV
  * illustration by https://www.openpeeps.com/
  * We respect the original creators. This is an inspired rebuild with our own taste and does not claim any ownership.
- * These animations aren’t associated with the codepen.io . They’re independent recreations meant to study interaction design
+ * These animations aren't associated with the codepen.io . They're independent recreations meant to study interaction design
  *
  * License & Usage:
  * - Free to use and modify in both personal and commercial projects.
