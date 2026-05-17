@@ -13,6 +13,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Separator } from "@/components/ui/separator";
 import { Eye, EyeOff, AlertCircle } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { CrowdCanvas } from "@/components/ui/skiper-ui/skiper39";
 
 interface LoginFormValues {
   email: string;
@@ -40,7 +41,9 @@ export default function LoginPage() {
       const stored = sessionStorage.getItem("datapaket_user");
       if (stored) {
         const u = JSON.parse(stored);
-        router.push(u.role === "admin" ? "/admin/dashboard" : "/customer/packages");
+        router.push(
+          u.role === "admin" ? "/admin/dashboard" : "/customer/packages",
+        );
       }
     } else {
       setError(result.message);
@@ -58,9 +61,13 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-cust-dark-blue from-60% to-cust-red to-100% flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-
+    <div className="min-h-screen bg-[linear-gradient(to_top,#2D4059_25%,#EA5455_50%,#F07B3F_75%,#FFD460_100%)] flex items-center justify-center p-4">
+      <div className="absolute inset-x-0 bottom-0 h-full w-full">
+        <CrowdCanvas src="/images/all-peeps.png" rows={15} cols={7} />
+      </div>
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-full bg-cust-black/40" />
+      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 aspect-square h-2/3 bg-cust-black/70 rounded-full blur-2xl" />
+      <div className="w-full max-w-md relative z-10">
         {/* Logo */}
         <div className="text-center mb-6">
           <div className="relative inline-block mb-3">
@@ -73,12 +80,13 @@ export default function LoginPage() {
           <h2 className="text-2xl font-bold text-white mb-0">
             <span className="text-cust-red">DataPaket</span>.id
           </h2>
-          <p className="text-white/80 font-semibold text-sm">Masuk ke akun Anda</p>
+          <p className="text-white/80 font-semibold text-sm">
+            Masuk ke akun Anda
+          </p>
         </div>
 
         <Card className="shadow-lg rounded-2xl">
           <CardContent className="p-8">
-
             {error && (
               <Alert variant="destructive" className="mb-4">
                 <AlertCircle className="h-4 w-4" />
@@ -99,7 +107,10 @@ export default function LoginPage() {
                     className="pl-9"
                     {...register("email", {
                       required: "Email wajib diisi",
-                      pattern: { value: /\S+@\S+\.\S+/, message: "Format email tidak valid" },
+                      pattern: {
+                        value: /\S+@\S+\.\S+/,
+                        message: "Format email tidak valid",
+                      },
                     })}
                   />
                 </div>
@@ -118,18 +129,26 @@ export default function LoginPage() {
                     placeholder="Masukkan password"
                     autoComplete="current-password"
                     className="pl-9 pr-9"
-                    {...register("password", { required: "Password wajib diisi" })}
+                    {...register("password", {
+                      required: "Password wajib diisi",
+                    })}
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword((p) => !p)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer transition-all duration-300 ease-in-out"
                   >
-                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    {showPassword ? (
+                      <EyeOff className="w-4 h-4" />
+                    ) : (
+                      <Eye className="w-4 h-4" />
+                    )}
                   </button>
                 </div>
                 {errors.password && (
-                  <p className="text-xs text-red-500">{errors.password.message}</p>
+                  <p className="text-xs text-red-500">
+                    {errors.password.message}
+                  </p>
                 )}
               </div>
 
@@ -171,7 +190,6 @@ export default function LoginPage() {
               <p>Admin: admin@datapaket.id / admin123</p>
               <p>Customer: budi@gmail.com / budi123</p>
             </div>
-
           </CardContent>
         </Card>
 
