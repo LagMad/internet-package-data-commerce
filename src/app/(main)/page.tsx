@@ -94,10 +94,7 @@ export default function HomePage() {
           <Skiper39 />
         </div>
         <div className="relative z-10">
-          <Packages
-            onGetStarted={handleGetStarted}
-            packages={FEATURED_PACKAGES}
-          />
+          <Packages onGetStarted={handleGetStarted} />
           <Features features={features} />
           <Ready onGetStarted={handleGetStarted} />
         </div>

@@ -1,106 +1,98 @@
-import React from "react";
-import { Card, Tag, Typography, Row, Col } from "antd";
-import { WifiOutlined, ArrowRightOutlined } from "@ant-design/icons";
+"use client";
+
+import React, { useEffect } from "react";
+import { Wifi, ArrowRight } from "lucide-react";
+
 import { formatCurrency } from "@/utils/formatters";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Carousel_003 } from "@/components/ui/skiper-ui/skiper49";
+import { usePackages } from "@/hooks/usePackages";
 
-const { Title, Paragraph, Text } = Typography;
+interface Package {
+  id: string;
+  name: string;
+  quota: string;
+  validityDays: number;
+  price: number;
+  badge?: string | null;
+}
 
 interface PackagesProps {
   onGetStarted: () => void;
-  packages: Array<{
-    id: string;
-    name: string;
-    quota: string;
-    validityDays: number;
-    price: number;
-    badge?: string | null;
-  }>;
 }
 
-const Packages = ({ onGetStarted, packages }: PackagesProps) => {
+const PackageCard = ({ pkg, onGetStarted }: { pkg: Package; onGetStarted: () => void }) => (
+  <div className="flex h-full flex-col rounded-2xl border-2 border-white/20 bg-cust-dark-blue p-6 text-white">
+    <div className="mb-6 flex flex-col items-center gap-2 text-center">
+      <Wifi className="h-8 w-8 text-white" />
+      {pkg.badge && (
+        <Badge
+          variant="secondary"
+          className={
+            pkg.badge === "Terlaris"
+              ? "border-blue-400/30 bg-blue-500/20 text-blue-300"
+              : "border-green-400/30 bg-green-500/20 text-green-300"
+          }
+        >
+          {pkg.badge}
+        </Badge>
+      )}
+      <h3 className="text-lg font-bold">{pkg.name}</h3>
+    </div>
+    <div className="mb-8 flex flex-1 flex-col items-center justify-center gap-1 text-center">
+      <p className="text-4xl font-bold text-cust-orange">{pkg.quota}</p>
+      <p className="text-sm text-white/70">Berlaku {pkg.validityDays} Hari</p>
+      <p className="text-xl font-semibold">{formatCurrency(pkg.price)}</p>
+    </div>
+    <Button variant="default" className="group w-full bg-cust-red border-cust-red" onClick={onGetStarted}>
+      Beli Sekarang
+      <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+    </Button>
+  </div>
+);
+
+const Packages = ({ onGetStarted }: PackagesProps) => {
+  const { packages, loading, fetchPackages } = usePackages();
+
+  useEffect(() => {
+    fetchPackages();
+  }, [fetchPackages]);
+
+  const slides = packages
+    .slice(0, 5)
+    .map((pkg) => <PackageCard key={pkg.id} pkg={pkg} onGetStarted={onGetStarted} />);
+
   return (
-    <section className="py-16 px-4 bg-cust-black from-60% to-cust-red to-100%">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-10">
-          <Title level={2} className="text-white!">
-            Paket Populer
-          </Title>
-          <Paragraph className="text-white!">
-            Dipilih oleh ribuan pelanggan setiap harinya
-          </Paragraph>
-        </div>
-        <Row gutter={[24, 24]} justify="center" align="stretch">
-          {packages.map((pkg) => (
-            <Col key={pkg.id} xs={24} sm={12} md={8} className="flex">
-              <Card
-                hoverable
-                className="group flex flex-col w-full h-full bg-cust-dark-blue! border-2! border-white/50!"
-                styles={{
-                  body: {
-                    flex: 1,
-                    display: "flex",
-                    flexDirection: "column",
-                    padding: 24,
-                  },
-                }}
-              >
-                {/* Upper Section */}
-                <div className="flex flex-col items-center justify-start text-center mb-6">
-                  <div className="flex flex-col items-center gap-2 mb-3">
-                    <WifiOutlined className="text-3xl text-cust-white!" />
-                    {pkg.badge && (
-                      <Tag
-                        color={pkg.badge === "Terlaris" ? "blue" : "green"}
-                        className="m-0"
-                      >
-                        {pkg.badge}
-                      </Tag>
-                    )}
-                  </div>
-                  <Title level={4} className="m-0! text-white!">
-                    {pkg.name}
-                  </Title>
-                </div>
+    <section className="bg-cust-black px-4 py-16">
+      <div className="mx-auto max-w-5xl">
 
-                {/* Middle Section */}
-                <div className="flex-1 flex flex-col justify-center text-center mb-8">
-                  <div className="text-4xl font-bold text-cust-orange mb-3">
-                    {pkg.quota}
-                  </div>
-                  <Text className="text-white! block mb-2">
-                    Berlaku {pkg.validityDays} Hari
-                  </Text>
-                  <div className="text-xl font-semibold text-white">
-                    {formatCurrency(pkg.price)}
-                  </div>
-                </div>
-
-                {/* Bottom Section */}
-                <div className="mt-auto">
-                  <Button
-                    variant="default"
-                    className="group w-full bg-cust-red border-cust-red hover:brightness-100"
-                    onClick={onGetStarted}
-                  >
-                    Beli Sekarang{" "}
-                    <ArrowRightOutlined className="group-hover:translate-x-2 transition-all duration-300 ease-in-out" />
-                  </Button>
-                </div>
-              </Card>
-            </Col>
-          ))}
-        </Row>
-        <div className="text-center mt-8">
-          <Button
-            variant={"outline"}
-            className="group py-5! px-10!"
-            onClick={onGetStarted}
-          >
-            Lihat Semua Paket{" "}
-            <ArrowRightOutlined className="group-hover:translate-x-2 transition-all duration-300 ease-in-out" />
-          </Button>
+        <div className="mb-10 text-center">
+          <h2 className="text-3xl font-bold text-white">Paket Populer</h2>
+          <p className="mt-2 text-white/60">Dipilih oleh ribuan pelanggan setiap harinya</p>
         </div>
+
+        {!loading && slides.length > 0 ? (
+          <>
+            <Carousel_003
+              slides={slides}
+              loop={slides.length > 2}
+              autoplay
+              showPagination
+              slideHeight={380}
+              className="max-w-none!"
+            />
+            <div className="mt-4 text-center">
+              <Button variant="outline" className="group px-10 py-5" onClick={onGetStarted}>
+                Lihat Semua Paket
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Button>
+            </div>
+          </>
+        ) : (
+          <p className="text-center text-white">Tidak ada paket ditemukan.</p>
+        )}
+
       </div>
     </section>
   );

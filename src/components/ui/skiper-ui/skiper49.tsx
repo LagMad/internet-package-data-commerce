@@ -20,50 +20,17 @@ import { cn } from "@/lib/utils";
 
 const Skiper49 = () => {
   const images = [
-    {
-      src: "/images/x.com/13.jpeg",
-      alt: "Illustrations by my fav AarzooAly",
-    },
-    {
-      src: "/images/x.com/32.jpeg",
-      alt: "Illustrations by my fav AarzooAly",
-    },
-    {
-      src: "/images/x.com/20.jpeg",
-      alt: "Illustrations by my fav AarzooAly",
-    },
-    {
-      src: "/images/x.com/21.jpeg",
-      alt: "Illustrations by my fav AarzooAly",
-    },
-    {
-      src: "/images/x.com/19.jpeg",
-      alt: "Illustrations by my fav AarzooAly",
-    },
-    {
-      src: "/images/x.com/1.jpeg",
-      alt: "Illustrations by my fav AarzooAly",
-    },
-    {
-      src: "/images/x.com/2.jpeg",
-      alt: "Illustrations by my fav AarzooAly",
-    },
-    {
-      src: "/images/x.com/3.jpeg",
-      alt: "Illustrations by my fav AarzooAly",
-    },
-    {
-      src: "/images/x.com/4.jpeg",
-      alt: "Illustrations by my fav AarzooAly",
-    },
-    {
-      src: "/images/x.com/5.jpeg",
-      alt: "Illustrations by my fav AarzooAly",
-    },
-    {
-      src: "/images/x.com/6.jpeg",
-      alt: "Illustrations by my fav AarzooAly",
-    },
+    { src: "/images/x.com/13.jpeg", alt: "Illustrations by my fav AarzooAly" },
+    { src: "/images/x.com/32.jpeg", alt: "Illustrations by my fav AarzooAly" },
+    { src: "/images/x.com/20.jpeg", alt: "Illustrations by my fav AarzooAly" },
+    { src: "/images/x.com/21.jpeg", alt: "Illustrations by my fav AarzooAly" },
+    { src: "/images/x.com/19.jpeg", alt: "Illustrations by my fav AarzooAly" },
+    { src: "/images/x.com/1.jpeg",  alt: "Illustrations by my fav AarzooAly" },
+    { src: "/images/x.com/2.jpeg",  alt: "Illustrations by my fav AarzooAly" },
+    { src: "/images/x.com/3.jpeg",  alt: "Illustrations by my fav AarzooAly" },
+    { src: "/images/x.com/4.jpeg",  alt: "Illustrations by my fav AarzooAly" },
+    { src: "/images/x.com/5.jpeg",  alt: "Illustrations by my fav AarzooAly" },
+    { src: "/images/x.com/6.jpeg",  alt: "Illustrations by my fav AarzooAly" },
   ];
 
   return (
@@ -75,49 +42,64 @@ const Skiper49 = () => {
 
 export { Skiper49 };
 
-const Carousel_003 = ({
-  images,
-  className,
-  showPagination = false,
-  showNavigation = false,
-  loop = true,
-  autoplay = false,
-  spaceBetween = 0,
-}: {
-  images: { src: string; alt: string }[];
+// ─── Types ───────────────────────────────────────────────────────────────────
+
+type ImageSlide = { src: string; alt: string };
+
+interface Carousel003Props {
   className?: string;
   showPagination?: boolean;
   showNavigation?: boolean;
   loop?: boolean;
   autoplay?: boolean;
   spaceBetween?: number;
-}) => {
+  // image mode (original)
+  images?: ImageSlide[];
+  // card mode — pass an array of React nodes, each becomes a slide
+  slides?: React.ReactNode[];
+  // per-slide width override (default 300px)
+  slideWidth?: number;
+  // carousel height override (default 350px)
+  slideHeight?: number;
+}
+
+// ─── Component ───────────────────────────────────────────────────────────────
+
+const Carousel_003 = ({
+  images,
+  slides,
+  className,
+  showPagination = false,
+  showNavigation = false,
+  loop = true,
+  autoplay = false,
+  spaceBetween = 0,
+  slideWidth = 300,
+  slideHeight = 350,
+}: Carousel003Props) => {
   const css = `
-  .Carousal_003 {
-    width: 100%;
-    height: 350px;
-    padding-bottom: 50px !important;
-  }
-  
-  .Carousal_003 .swiper-slide {
-    background-position: center;
-    background-size: cover;
-    width: 300px;
-  }
+    .Carousal_003 {
+      width: 100%;
+      height: ${slideHeight}px;
+      padding-bottom: 50px !important;
+    }
 
-  .swiper-pagination-bullet {
-    background-color: #000 !important;
-  }
+    .Carousal_003 .swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: ${slideWidth}px;
+    }
 
-`;
+    .swiper-pagination-bullet {
+      background-color: #000 !important;
+    }
+  `;
+
   return (
     <motion.div
       initial={{ opacity: 0, translateY: 20 }}
       animate={{ opacity: 1, translateY: 0 }}
-      transition={{
-        duration: 0.3,
-        delay: 0.5,
-      }}
+      transition={{ duration: 0.3, delay: 0.5 }}
       className={cn("relative w-full max-w-4xl px-5", className)}
     >
       <style>{css}</style>
@@ -130,53 +112,34 @@ const Carousel_003 = ({
       >
         <Swiper
           spaceBetween={spaceBetween}
-          autoplay={
-            autoplay
-              ? {
-                  delay: 1500,
-                  disableOnInteraction: true,
-                }
-              : false
-          }
+          autoplay={autoplay ? { delay: 1500, disableOnInteraction: true } : false}
           effect="coverflow"
-          grabCursor={true}
+          grabCursor
           slidesPerView="auto"
-          centeredSlides={true}
+          centeredSlides
           loop={loop}
-          coverflowEffect={{
-            rotate: 40,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows: true,
-          }}
-          pagination={
-            showPagination
-              ? {
-                  clickable: true,
-                }
-              : false
-          }
+          coverflowEffect={{ rotate: 40, stretch: 0, depth: 100, modifier: 1, slideShadows: true }}
+          pagination={showPagination ? { clickable: true } : false}
           navigation={
             showNavigation
-              ? {
-                  nextEl: ".swiper-button-next",
-                  prevEl: ".swiper-button-prev",
-                }
+              ? { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }
               : false
           }
           className="Carousal_003"
           modules={[EffectCoverflow, Autoplay, Pagination, Navigation]}
         >
-          {images.map((image, index) => (
-            <SwiperSlide key={index} className="">
-              <img
-                className="h-full w-full object-cover"
-                src={image.src}
-                alt={image.alt}
-              />
+          {/* card/node mode */}
+          {slides?.map((slide, i) => (
+            <SwiperSlide key={i}>{slide}</SwiperSlide>
+          ))}
+
+          {/* image mode (original behaviour) */}
+          {!slides && images?.map((image, i) => (
+            <SwiperSlide key={i}>
+              <img className="h-full w-full object-cover" src={image.src} alt={image.alt} />
             </SwiperSlide>
           ))}
+
           {showNavigation && (
             <div>
               <div className="swiper-button-next after:hidden">
