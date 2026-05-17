@@ -3,8 +3,6 @@ import "./globals.css";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { Toaster } from "react-hot-toast";
-import Footer from "@/components/common/Footer";
-import Navbar from "@/components/common/Navbar";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 
@@ -24,9 +22,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-cust-dark-blue!">
         <AntdRegistry>
           <AuthProvider>
-            <Navbar />
-            <div className="min-h-screen bg-cust-dark-blue!">{children}</div>
-            <Footer />
+            {children}
             <Toaster position="bottom-right" />
           </AuthProvider>
         </AntdRegistry>

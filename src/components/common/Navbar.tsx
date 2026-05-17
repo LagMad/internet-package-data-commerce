@@ -20,7 +20,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const hiddenPaths = ["/login", "/register"];
+  const hiddenPaths = ["/login", "/register", "/not-found"];
   const hideNav =
     hiddenPaths.includes(pathname) ||
     pathname.startsWith("/admin/") ||

@@ -9,8 +9,6 @@ import {
   CheckCircleOutlined,
 } from "@ant-design/icons";
 import { useAuth } from "@/contexts/AuthContext";
-import Navbar from "@/components/common/Navbar";
-import Footer from "@/components/common/Footer";
 import Hero from "@/sections/Home/Hero";
 import Stats from "@/sections/Home/Stats";
 import Packages from "@/sections/Home/Packages";
