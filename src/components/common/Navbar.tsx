@@ -32,13 +32,12 @@ const Navbar = () => {
   const logoColored = isOnCustomer || isScrolled;
 
   return (
-    <header
-      className={`top-0 z-50 w-full transition-all duration-300 ease-in-out fixed ${
-        isScrolled ? "bg-cust-black shadow-xl shadow-white/10" : ""
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-
+    <header className={`w-full top-0 z-50 fixed px-10 pt-3`}>
+      <div
+        className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between rounded-2xl transition-all duration-300 ease-in-out ${
+          isScrolled ? "bg-cust-black shadow-xl shadow-white/10" : "w"
+        }`}
+      >
         {/* Logo */}
         <div className="flex items-center gap-2">
           <WifiOutlined
@@ -72,7 +71,9 @@ const Navbar = () => {
               <Button
                 onClick={() =>
                   router.push(
-                    user.role === "admin" ? "/admin/dashboard" : "/customer/packages"
+                    user.role === "admin"
+                      ? "/admin/dashboard"
+                      : "/customer/packages",
                   )
                 }
               >
@@ -90,7 +91,9 @@ const Navbar = () => {
               <Button
                 variant="outline"
                 className={`hover:brightness-80 ${
-                  isScrolled ? "border-cust-white text-cust-white" : "border-white! text-white!"
+                  isScrolled
+                    ? "border-cust-white text-cust-white"
+                    : "border-white! text-white!"
                 }`}
                 onClick={() => router.push("/login")}
               >
@@ -99,7 +102,6 @@ const Navbar = () => {
             </>
           )}
         </div>
-
       </div>
     </header>
   );
