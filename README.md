@@ -33,3 +33,24 @@ npm run dev
 ### 6. Buka Browser
 buka alamat localhost:3001 di browser Anda
 
+
+# Waktu pengerjaan
+Total pengerjaan : ~12 jam
+
+### Rincian:
+- Main UI dan functions : ~8 jam
+
+Sabtu, 16 Mei 2026, 16:30 - 20:30 
+Sabtu, 16 Mei 2026, 22:00 - Minggu, 17 Mei 2026, 02:00 WIB
+
+- Poles UI: ~4 jam
+
+Minggu, 17 Mei 2026, 13:30 - 17:30 WIB
+
+# Deployment
+
+Di-deploy di Vercel: https://internet-package-data-commerce.vercel.app/
+
+### Notes:
+
+JSON Server tidak di-deploy, jadi harus di-run secara manual pada localhost
