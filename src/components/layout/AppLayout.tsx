@@ -96,7 +96,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
       {/* Mobile Backdrop */}
       {mobileOpen && (
         <div
-          className="fixed inset-0 bg-black/60 z-[60] lg:hidden transition-opacity duration-300"
+          className="fixed inset-0 bg-black/60 z-60 lg:hidden transition-opacity duration-300"
           onClick={() => setMobileOpen(false)}
         />
       )}
@@ -104,7 +104,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
       {/* Sidebar */}
       <aside
         className={cn(
-          "flex flex-col bg-cust-black transition-all duration-300 z-[70]",
+          "flex flex-col bg-cust-black transition-all duration-300 z-70",
           "fixed inset-y-0 left-0 lg:relative",
           mobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0",
           collapsed ? "lg:w-16" : "lg:w-55",

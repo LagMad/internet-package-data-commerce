@@ -1,14 +1,5 @@
 import React from "react";
-import { Card, Typography, Row, Col } from "antd";
-import {
-  ThunderboltOutlined,
-  SafetyOutlined,
-  CustomerServiceOutlined,
-  CheckCircleOutlined,
-} from "@ant-design/icons";
-import { PackageCategory } from "@/types";
-
-const { Title, Paragraph } = Typography;
+import { Card, CardContent } from "@/components/ui/card";
 
 interface FeaturesProps {
   features: {
@@ -23,24 +14,22 @@ const Features = ({ features }: FeaturesProps) => {
     <section className="bg-cust-dark-blue py-16 px-4">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-10">
-          <Title level={2} className="text-cust-yellow!">Kenapa Pilih DataPaket.id?</Title>
+          <h2 className="text-3xl font-bold text-cust-yellow">Kenapa Pilih DataPaket.id?</h2>
         </div>
-        <Row gutter={[24, 24]}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {features.map((f, i) => (
-            <Col key={i} xs={24} sm={12} md={6}>
-              <Card
-                className="text-center h-full bg-cust-red! border-white/10!"
-                styles={{ body: { padding: 24 } }}
-              >
+            <Card
+              key={i}
+              className="text-center h-full bg-cust-red border-white/10"
+            >
+              <CardContent className="p-6">
                 <div className="mb-3 text-white">{f.icon}</div>
-                <Title level={5} className="text-white!">{f.title}</Title>
-                <Paragraph className="text-white! text-sm">
-                  {f.desc}
-                </Paragraph>
-              </Card>
-            </Col>
+                <h5 className="text-white font-semibold text-base mb-2">{f.title}</h5>
+                <p className="text-white text-sm">{f.desc}</p>
+              </CardContent>
+            </Card>
           ))}
-        </Row>
+        </div>
       </div>
     </section>
   );
